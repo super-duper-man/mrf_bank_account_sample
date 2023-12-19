@@ -1,10 +1,15 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
+import AppLayout from "./pages/AppLayout";
+import Dashboard from "./pages/Dashboard";
+
+const router = createBrowserRouter([{ path: "/", element: <Dashboard /> }]);
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello My Sample</h1>
-    </>
+    <AppLayout>
+      <RouterProvider router={router} />
+    </AppLayout>
   );
 }
 

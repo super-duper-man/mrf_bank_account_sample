@@ -60,7 +60,11 @@ export function SideAccordion({
         {headerIcon ? (
           <div className="flex gap-2 items-center">
             {headerIcon}
-            <span className={`${displaySidebar && "hidden"} transition-all`}>
+            <span
+              className={`${
+                displaySidebar && "hidden"
+              } transition-all text-base`}
+            >
               {headerText}
             </span>
           </div>

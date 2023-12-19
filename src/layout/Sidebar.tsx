@@ -1,40 +1,49 @@
-import { useState } from "react";
 import { IconButton } from "@material-tailwind/react";
-function Sidebar() {
-  const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [isCollapsible, setIsCollapsible] = useState(false);
+import { useSidebarToggle } from "../store/sidebar-store";
+import { ReactNode } from "react";
 
-  const onMouseOver = () => {
-    setIsCollapsible(!isCollapsible);
-  };
+type Props = {
+  sideHeader: ReactNode;
+  sideList: ReactNode;
+  sideFooter: ReactNode;
+};
+
+function Sidebar({ sideHeader, sideList, sideFooter }: Props) {
+  const display = useSidebarToggle((state) => state.display);
+  const setDisplay = useSidebarToggle((state) => state.setDisplay);
 
   return (
     <div
-      className={`h-screen px-4 pt-8 pb-4 flex justify-between flex-col duration-300 transition-all border-l-2 border-gray-400  ${
-        !toggleSidebar ? "w-80" : "w-20"
+      className={`h-screen px-4 pt-4 pb-4 flex justify-between flex-col duration-300 transition-all border-l-2 border-gray-400  ${
+        !display ? "w-80" : "w-20"
       }`}
-      onMouseEnter={onMouseOver}
-      onMouseLeave={onMouseOver}
     >
       <div className="flex flex-col">
         <div className="flex items-center justify-between relative">
           <div className="flex items-center pl-1 gap-4">
-            <h3 className={`${toggleSidebar && "hidden"}`}>LOGO</h3>
+            <i className="fas fa-house text-2xl text-blue-500" />
+            <h3 className={`font-extrabold text-3xl ${display && "hidden"}`}>
+              ثمینا
+            </h3>
           </div>
           <IconButton
-            className={`rounded-full absolute left-[-35px] p-4 duration-300 transition-all ${
-              toggleSidebar ? "rotate-180" : "rotate-0"
+            className={`rounded-full absolute left-[-33px] p-4 duration-300 transition-all bg-blue-gray-50 border-2 border-gray-400 text-gray-600 ${
+              display ? "rotate-180" : "rotate-0"
             }`}
             placeholder={undefined}
-            onClick={() => setToggleSidebar(!toggleSidebar)}
-            variant="outlined"
+            onClick={() => setDisplay(!display)}
+            size="sm"
+            ripple={false}
           >
             <i className="fas fa-arrow-right" />
           </IconButton>
         </div>
-        <div>/* side children */</div>
+        <div>
+          <div>{sideHeader}</div>
+          <div>{sideList}</div>
+        </div>
       </div>
-      <div>/* side footer */</div>
+      <div>{sideFooter}</div>
     </div>
   );
 }

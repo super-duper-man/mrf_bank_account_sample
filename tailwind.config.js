@@ -8,13 +8,13 @@ module.exports = withMT({
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      // ...defaultTheme,
-      // colors: {
-      //   ...defaultTheme.colors,
-      //   text: {
-      //     DEFAULT: "#1F2937",
-      //   },
-      // },
+      ...defaultTheme,
+      colors: {
+        ...defaultTheme.colors,
+        text: {
+          DEFAULT: "#1F2937",
+        },
+      },
     },
   },
   plugins: [],

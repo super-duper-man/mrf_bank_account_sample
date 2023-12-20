@@ -13,7 +13,7 @@ function AppLayout({ children }: Children) {
   }
   return (
     <div className="h-screen flex flex-row w-full justify-start bg-gray-50">
-      <aside className={`hidden ${!display ? "md:w-80" : "md:w-20"} md:block`}>
+      <aside className={`hidden ${!display ? "md:w-80" : "md:w-20"} lg:block`}>
         <Sidebar
           sideHeader={<SideListHeader />}
           sideList={<SideList />}

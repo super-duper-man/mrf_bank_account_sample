@@ -27,7 +27,7 @@ function Sidebar({ sideHeader, sideList, sideFooter }: Props) {
             </h3>
           </div>
           <IconButton
-            className={`rounded-full absolute left-[-33px] p-4 duration-300 transition-all bg-blue-gray-50 border-2 border-gray-400 text-gray-600 ${
+            className={`rounded-full absolute left-[-33px] mt-5 p-4 duration-300 transition-all bg-blue-gray-50 border-2 border-gray-400 text-gray-600 ${
               display ? "rotate-180" : "rotate-0"
             }`}
             placeholder={undefined}
@@ -35,7 +35,7 @@ function Sidebar({ sideHeader, sideList, sideFooter }: Props) {
             size="sm"
             ripple={false}
           >
-            <i className="fas fa-arrow-right" />
+            <i className="fas fa-arrow-right pt-1" />
           </IconButton>
         </div>
         <div>

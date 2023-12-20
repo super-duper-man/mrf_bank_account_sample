@@ -36,6 +36,7 @@ function DashboardFilter() {
       <AppDialog
         open={open}
         onClose={toggleDialog}
+        onConfirm={toggleDialog}
         dialogHeader="فیلترها"
         dialogBody="فیلتر"
         confirmText="فیلتر"

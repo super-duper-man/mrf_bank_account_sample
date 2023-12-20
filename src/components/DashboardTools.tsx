@@ -55,6 +55,7 @@ function DashboardTools() {
       <AppDialog
         open={open}
         onClose={toggleDialog}
+        onConfirm={toggleDialog}
         dialogHeader="حساب جدید"
         dialogBody={<AddAccount />}
         confirmText="ایجاد"

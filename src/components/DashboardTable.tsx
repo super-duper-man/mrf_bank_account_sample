@@ -4,8 +4,10 @@ import { IoIosArrowRoundDown } from "react-icons/io";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { IoIosExpand } from "react-icons/io";
+import React, { useState } from "react";
 import ExpandableText from "./ExpandableText";
 import { TABLE_ROWS } from "../data/table-data";
+import AppDialog from "./AppDialog";
 
 const DashboardTable = () => {
   const TABLE_HEAD = [
@@ -16,6 +18,36 @@ const DashboardTable = () => {
     "شماره کارت",
     "",
   ];
+
+  const [open, setOpen] = useState(false);
+  const [tableRows, setTableRows] = React.useState(TABLE_ROWS);
+  const [deletionRow, setDeletionRow] = useState<string>("");
+
+  const [selectedAccount, setSelectedAccount] = React.useState<number[]>([]);
+
+  const onSelect = (checked: boolean, accountCode: number) => {
+    if (checked && !selectedAccount.find((item) => item === accountCode)) {
+      setSelectedAccount((prevValue) => [...prevValue, accountCode]);
+    } else {
+      setSelectedAccount(() =>
+        selectedAccount.filter((item) => item !== accountCode)
+      );
+    }
+  };
+
+  const handleDelete = (accountCode: string) => {
+    if (selectedAccount.includes(Number(accountCode))) {
+      setDeletionRow(accountCode);
+      setOpen(true);
+    }
+  };
+
+  const handleConfirmDialog = () => {
+    setTableRows(() =>
+      tableRows.filter((item) => item.accountCode !== deletionRow)
+    );
+    setOpen(!open);
+  };
 
   return (
     <>
@@ -45,7 +77,7 @@ const DashboardTable = () => {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
+            {tableRows.map(
               (
                 { accountCode, accountNumber, accountTitle, cardNumber, sheba },
                 index
@@ -64,7 +96,13 @@ const DashboardTable = () => {
                         className="font-normal flex items-center"
                         placeholder={undefined}
                       >
-                        <Checkbox color="blue" crossOrigin={undefined} />
+                        <Checkbox
+                          color="blue"
+                          crossOrigin={undefined}
+                          onChange={(e) =>
+                            onSelect(e.target.checked, Number(accountCode))
+                          }
+                        />
                         <ExpandableText maxChar={18}>
                           {accountTitle}
                         </ExpandableText>
@@ -121,7 +159,13 @@ const DashboardTable = () => {
                       >
                         <IoIosExpand className="text-xl cursor-pointer" />
                         <TbEdit className="text-xl cursor-pointer" />
-                        <RiDeleteBin5Line className="text-xl cursor-pointer" />
+                        <RiDeleteBin5Line
+                          className={`text-xl cursor-pointer ${
+                            selectedAccount.includes(Number(accountCode)) &&
+                            "text-red-700"
+                          }`}
+                          onClick={() => handleDelete(accountCode)}
+                        />
                       </Typography>
                     </td>
                   </tr>
@@ -131,6 +175,15 @@ const DashboardTable = () => {
           </tbody>
         </table>
       </Card>
+      <AppDialog
+        open={open}
+        onClose={() => setOpen(!open)}
+        onConfirm={handleConfirmDialog}
+        dialogHeader="حذف حساب"
+        dialogBody="آیا از حذف حساب مطمن هستید؟"
+        confirmText="بله"
+        confirmColor="red"
+      />
     </>
   );
 };

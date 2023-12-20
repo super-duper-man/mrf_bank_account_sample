@@ -33,6 +33,7 @@ type Props = {
     | "pink"
     | "red";
   onClose: () => void;
+  onConfirm: () => void;
 };
 
 function AppDialog({
@@ -42,6 +43,7 @@ function AppDialog({
   confirmText,
   confirmColor = "blue",
   onClose,
+  onConfirm,
 }: Props) {
   return (
     <Dialog open={open} handler={onClose} placeholder={undefined}>
@@ -52,7 +54,7 @@ function AppDialog({
           placeholder={undefined}
           variant="gradient"
           color={confirmColor}
-          onClick={onClose}
+          onClick={onConfirm}
         >
           <span>{confirmText}</span>
         </Button>

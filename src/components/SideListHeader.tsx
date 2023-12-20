@@ -1,8 +1,8 @@
-import { useSidebarToggle } from "../store/sidebar-store";
+import { useSidebar } from "../context/SidebarContext";
 import { BsApple } from "react-icons/bs";
 
 const SideListHeader = () => {
-  const displaySidebar = useSidebarToggle((state) => state.display);
+  const { display: displaySidebar } = useSidebar();
 
   return (
     <div className="flex justify-between items-center mt-5 mb-5 transition-all">

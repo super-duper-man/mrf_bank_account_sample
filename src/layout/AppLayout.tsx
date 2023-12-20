@@ -4,10 +4,10 @@ import SidebarFooter from "../components/SidebarFooter";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Children } from "../types";
-import { useSidebarToggle } from "../store/sidebar-store";
+import { useSidebar } from "../context/SidebarContext";
 
 function AppLayout({ children }: Children) {
-  const display = useSidebarToggle((state) => state.display);
+  const { display } = useSidebar();
   {
     !display ? "md:w-80" : "md:w-20";
   }

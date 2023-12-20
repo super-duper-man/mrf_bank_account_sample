@@ -4,7 +4,7 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
-import { useSidebarToggle } from "../store/sidebar-store";
+import { useSidebar } from "../context/SidebarContext";
 
 type IconProps = {
   id: number | string | undefined;
@@ -18,8 +18,7 @@ type AccordionProps = {
 };
 
 function Icon({ id, open }: IconProps) {
-  const displaySidebar = useSidebarToggle((state) => state.display);
-
+  const { display: displaySidebar } = useSidebar();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +45,7 @@ export function SideAccordion({
   body,
 }: AccordionProps) {
   const [open, setOpen] = React.useState(0);
-  const displaySidebar = useSidebarToggle((state) => state.display);
+  const { display: displaySidebar } = useSidebar();
 
   const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
 

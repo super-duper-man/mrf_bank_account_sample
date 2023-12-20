@@ -18,11 +18,15 @@ function DeleteAccounts() {
   };
 
   const handleDelete = () => {
+    if (selectedAccounts.length > 0) setOpen(!open);
+  };
+
+  const filterTableData = () => {
     setTableData(removeAccounts(tableData, selectedAccounts));
   };
 
   const handleConfirmDialog = () => {
-    handleDelete();
+    filterTableData();
     setOpen(!open);
   };
 
@@ -34,7 +38,7 @@ function DeleteAccounts() {
         size="md"
         className="w-40"
         color="blue-gray"
-        onClick={() => setOpen(!open)}
+        onClick={handleDelete}
       >
         <RiDeleteBin5Line className="text-xl" />
       </IconButton>

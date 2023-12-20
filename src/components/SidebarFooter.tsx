@@ -1,8 +1,8 @@
 import { TfiHelpAlt } from "react-icons/tfi";
 import { PiChatCircleTextLight } from "react-icons/pi";
-import { useSidebarToggle } from "../store/sidebar-store";
+import { useSidebar } from "../context/SidebarContext";
 const SidebarFooter = () => {
-  const displaySidebar = useSidebarToggle((state) => state.display);
+  const { display: displaySidebar } = useSidebar();
 
   return (
     <div className={`flex flex-col gap-4 ${displaySidebar && "hidden"}`}>

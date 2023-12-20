@@ -1,6 +1,6 @@
 import { IconButton } from "@material-tailwind/react";
-import { useSidebarToggle } from "../store/sidebar-store";
 import { ReactNode } from "react";
+import { useSidebar } from "../context/SidebarContext";
 
 type Props = {
   sideHeader: ReactNode;
@@ -9,8 +9,7 @@ type Props = {
 };
 
 function Sidebar({ sideHeader, sideList, sideFooter }: Props) {
-  const display = useSidebarToggle((state) => state.display);
-  const setDisplay = useSidebarToggle((state) => state.setDisplay);
+  const { display, setDisplay } = useSidebar();
 
   return (
     <div

@@ -4,23 +4,28 @@ import SidebarFooter from "../components/SidebarFooter";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { Children } from "../types";
+import { useSidebarToggle } from "../store/sidebar-store";
 
 function AppLayout({ children }: Children) {
+  const display = useSidebarToggle((state) => state.display);
+  {
+    !display ? "md:w-80" : "md:w-20";
+  }
   return (
-    <main className="h-screen flex flex-row justify-start bg-gray-50">
-      <div className="">
+    <div className="h-screen flex flex-row w-full justify-start bg-gray-50">
+      <aside className={`hidden ${!display ? "md:w-80" : "md:w-20"} md:block`}>
         <Sidebar
           sideHeader={<SideListHeader />}
           sideList={<SideList />}
           sideFooter={<SidebarFooter />}
         />
-      </div>
+      </aside>
 
-      <div className="flex-1">
+      <main className="flex-1 w-full min-h-screen">
         <Header />
-        <main className="flex-1 p-4 h-screen">{children}</main>
-      </div>
-    </main>
+        <div className="flex-1 p-4 h-screen">{children}</div>
+      </main>
+    </div>
   );
 }
 

@@ -1,7 +1,9 @@
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineCalendarMonth } from "react-icons/md";
+import { format } from "date-fns-jalali";
 import Time from "./Time";
 function HeaderDateTime() {
+  const today = format(new Date(), "d MMMM yyyy");
   return (
     <>
       <IoMdTime className="text-xl" />
@@ -10,7 +12,7 @@ function HeaderDateTime() {
         <Time />
       </div>
       <MdOutlineCalendarMonth className="text-xl" />
-      <div>پنجشنبه، 27 مرداد 1402</div>
+      <div>{today}</div>
     </>
   );
 }

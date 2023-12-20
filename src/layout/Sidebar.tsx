@@ -14,7 +14,7 @@ function Sidebar({ sideHeader, sideList, sideFooter }: Props) {
 
   return (
     <div
-      className={`h-screen px-4 pt-4 pb-4 flex justify-between flex-col duration-300 transition-all border-l-2 border-gray-400  ${
+      className={`fixed h-screen px-4 pt-4 pb-4 flex justify-between flex-col transition-transform border-l-2 border-gray-400  ${
         !display ? "w-80" : "w-20"
       }`}
     >

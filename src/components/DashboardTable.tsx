@@ -4,10 +4,11 @@ import { IoIosArrowRoundDown } from "react-icons/io";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { TbEdit } from "react-icons/tb";
 import { IoIosExpand } from "react-icons/io";
-import React, { useState } from "react";
 import ExpandableText from "./ExpandableText";
 import { TABLE_ROWS } from "../data/table-data";
 import AppDialog from "./AppDialog";
+import useDialog from "../hooks/useDialog";
+import { useDashboard } from "../context/DashboardContext";
 
 const DashboardTable = () => {
   const TABLE_HEAD = [
@@ -19,33 +20,35 @@ const DashboardTable = () => {
     "",
   ];
 
-  const [open, setOpen] = useState(false);
-  const [tableRows, setTableRows] = React.useState(TABLE_ROWS);
-  const [deletionRow, setDeletionRow] = useState<string>("");
-
-  const [selectedAccount, setSelectedAccount] = React.useState<number[]>([]);
+  const [open, setOpen] = useDialog();
+  const {
+    deletionRow,
+    setDeletionRow,
+    selectedAccounts,
+    setSelectedAccounts,
+    tableData,
+    setTableData,
+  } = useDashboard();
 
   const onSelect = (checked: boolean, accountCode: number) => {
-    if (checked && !selectedAccount.find((item) => item === accountCode)) {
-      setSelectedAccount((prevValue) => [...prevValue, accountCode]);
+    if (checked && !selectedAccounts.find((item) => item === accountCode)) {
+      setSelectedAccounts([...selectedAccounts, accountCode]);
     } else {
-      setSelectedAccount(() =>
-        selectedAccount.filter((item) => item !== accountCode)
+      setSelectedAccounts(
+        selectedAccounts.filter((item) => item !== accountCode)
       );
     }
   };
 
   const handleDelete = (accountCode: string) => {
-    if (selectedAccount.includes(Number(accountCode))) {
+    if (selectedAccounts.includes(Number(accountCode))) {
       setDeletionRow(accountCode);
       setOpen(true);
     }
   };
 
   const handleConfirmDialog = () => {
-    setTableRows(() =>
-      tableRows.filter((item) => item.accountCode !== deletionRow)
-    );
+    setTableData(tableData.filter((item) => item.accountCode !== deletionRow));
     setOpen(!open);
   };
 
@@ -77,7 +80,7 @@ const DashboardTable = () => {
             </tr>
           </thead>
           <tbody>
-            {tableRows.map(
+            {tableData.map(
               (
                 { accountCode, accountNumber, accountTitle, cardNumber, sheba },
                 index
@@ -161,7 +164,7 @@ const DashboardTable = () => {
                         <TbEdit className="text-xl cursor-pointer" />
                         <RiDeleteBin5Line
                           className={`text-xl cursor-pointer ${
-                            selectedAccount.includes(Number(accountCode)) &&
+                            selectedAccounts.includes(Number(accountCode)) &&
                             "text-red-700"
                           }`}
                           onClick={() => handleDelete(accountCode)}

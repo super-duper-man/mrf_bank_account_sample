@@ -1,17 +1,20 @@
-import React from "react";
 import { Button, IconButton } from "@material-tailwind/react";
 import { SlPrinter } from "react-icons/sl";
 import { FiPlusSquare } from "react-icons/fi";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
-import { RiDeleteBin5Line } from "react-icons/ri";
 
 import AppDialog from "./AppDialog";
 import AddAccount from "./AddAccount";
+import useDialog from "../hooks/useDialog";
+import DeleteAccounts from "./DeleteAccounts";
 
 function DashboardTools() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useDialog();
 
-  const toggleDialog = () => setOpen(!open);
+  const toggleDialog = () => {
+    setOpen(!open);
+  };
+
   return (
     <>
       <div className="flex justify-center items-center gap-2">
@@ -33,15 +36,8 @@ function DashboardTools() {
         >
           <PiMicrosoftExcelLogo className="text-xl" />
         </IconButton>
-        <IconButton
-          placeholder={undefined}
-          variant="outlined"
-          size="md"
-          className="w-40"
-          color="blue-gray"
-        >
-          <RiDeleteBin5Line className="text-xl" />
-        </IconButton>
+
+        <DeleteAccounts />
         <Button
           placeholder={undefined}
           color="blue"

@@ -1,10 +1,10 @@
-import React from "react";
 import { IconButton, Input } from "@material-tailwind/react";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import AppDialog from "./AppDialog";
+import useDialog from "../hooks/useDialog";
 
 function DashboardFilter() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useDialog();
 
   const toggleDialog = () => setOpen(!open);
 

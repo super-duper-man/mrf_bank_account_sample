@@ -1,37 +1,19 @@
 import React from "react";
-
-import { Button, IconButton, Input } from "@material-tailwind/react";
-import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import { Button, IconButton } from "@material-tailwind/react";
 import { SlPrinter } from "react-icons/sl";
 import { FiPlusSquare } from "react-icons/fi";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const DashboardTools = () => {
+import AppDialog from "./AppDialog";
+import AddAccount from "./AddAccount";
+
+function DashboardTools() {
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDialog = () => setOpen(!open);
   return (
-    <div className="flex items-center justify-between mt-4">
-      <div className="flex items-center justify-start gap-2">
-        <Input
-          type="search"
-          placeholder="جستجو"
-          className="!border !border-gray-300 bg-gray-300 text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10 w-[250px]"
-          labelProps={{
-            className: "hidden",
-          }}
-          containerProps={{ className: "min-w-[100px]" }}
-          crossOrigin={undefined}
-          icon={<i className="fas fa-search" />}
-        />
-        <IconButton
-          placeholder={undefined}
-          variant="outlined"
-          size="md"
-          className="w-40"
-          color="blue-gray"
-        >
-          <HiOutlineAdjustmentsHorizontal className="text-2xl" />
-        </IconButton>
-      </div>
+    <>
       <div className="flex justify-center items-center gap-2">
         <IconButton
           placeholder={undefined}
@@ -64,13 +46,21 @@ const DashboardTools = () => {
           placeholder={undefined}
           color="blue"
           className="flex justify-start items-center gap-2"
+          onClick={toggleDialog}
         >
           <FiPlusSquare className="text-base" />
           حساب جدید
         </Button>
       </div>
-    </div>
+      <AppDialog
+        open={open}
+        onClose={toggleDialog}
+        dialogHeader="حساب جدید"
+        dialogBody={<AddAccount />}
+        confirmText="ایجاد"
+      />
+    </>
   );
-};
+}
 
 export default DashboardTools;

@@ -7,13 +7,16 @@ import { Children } from "../types";
 
 function AppLayout({ children }: Children) {
   return (
-    <main className="flex flex-row justify-start bg-blue-gray-50">
-      <Sidebar
-        sideHeader={<SideListHeader />}
-        sideList={<SideList />}
-        sideFooter={<SidebarFooter />}
-      />
-      <div className="flex flex-col w-full">
+    <main className="h-screen flex flex-row justify-start bg-gray-50">
+      <div className="">
+        <Sidebar
+          sideHeader={<SideListHeader />}
+          sideList={<SideList />}
+          sideFooter={<SidebarFooter />}
+        />
+      </div>
+
+      <div className="flex-1">
         <Header />
         <main className="flex-1 p-4 h-screen">{children}</main>
       </div>

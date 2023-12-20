@@ -1,4 +1,5 @@
 import DashboardBreadcrumbs from "../components/DashboardBreadcrumbs";
+import DashboardTable from "../components/DashboardTable";
 import DashboardTitle from "../components/DashboardTitle";
 import DashboardTools from "../components/DashboardTools";
 
@@ -8,6 +9,7 @@ function Dashboard() {
       <DashboardBreadcrumbs />
       <DashboardTitle />
       <DashboardTools />
+      <DashboardTable />
     </div>
   );
 }

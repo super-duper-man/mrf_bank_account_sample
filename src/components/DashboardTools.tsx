@@ -2,7 +2,10 @@ import React from "react";
 
 import { Button, IconButton, Input } from "@material-tailwind/react";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import { SlPrinter } from "react-icons/sl";
 import { FiPlusSquare } from "react-icons/fi";
+import { PiMicrosoftExcelLogo } from "react-icons/pi";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const DashboardTools = () => {
   return (
@@ -37,7 +40,7 @@ const DashboardTools = () => {
           className="w-40"
           color="blue-gray"
         >
-          <HiOutlineAdjustmentsHorizontal className="text-2xl" />
+          <SlPrinter className="text-xl" />
         </IconButton>
         <IconButton
           placeholder={undefined}
@@ -46,7 +49,7 @@ const DashboardTools = () => {
           className="w-40"
           color="blue-gray"
         >
-          <HiOutlineAdjustmentsHorizontal className="text-2xl" />
+          <PiMicrosoftExcelLogo className="text-xl" />
         </IconButton>
         <IconButton
           placeholder={undefined}
@@ -55,7 +58,7 @@ const DashboardTools = () => {
           className="w-40"
           color="blue-gray"
         >
-          <HiOutlineAdjustmentsHorizontal className="text-2xl" />
+          <RiDeleteBin5Line className="text-xl" />
         </IconButton>
         <Button
           placeholder={undefined}

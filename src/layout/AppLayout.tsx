@@ -1,4 +1,4 @@
-import CompanyHeader from "../components/CompanyHeader";
+import SideListHeader from "../components/SideListHeader";
 import SideList from "../components/SideList";
 import SidebarFooter from "../components/SidebarFooter";
 import Header from "./Header";
@@ -9,7 +9,7 @@ function AppLayout({ children }: Children) {
   return (
     <main className="flex flex-row justify-start bg-blue-gray-50">
       <Sidebar
-        sideHeader={<CompanyHeader />}
+        sideHeader={<SideListHeader />}
         sideList={<SideList />}
         sideFooter={<SidebarFooter />}
       />

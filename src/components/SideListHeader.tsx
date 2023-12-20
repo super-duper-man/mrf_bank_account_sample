@@ -1,7 +1,7 @@
 import { useSidebarToggle } from "../store/sidebar-store";
 import { BsApple } from "react-icons/bs";
 
-const CompanyHeader = () => {
+const SideListHeader = () => {
   const displaySidebar = useSidebarToggle((state) => state.display);
 
   return (
@@ -14,7 +14,7 @@ const CompanyHeader = () => {
         </span>
       </div>
       <i
-        className={`fa-regular fa-credit-card text-xl ${
+        className={`fa-regular fa-credit-card text-xl text-gray-700 ${
           displaySidebar && "hidden"
         }`}
       />
@@ -22,4 +22,4 @@ const CompanyHeader = () => {
   );
 };
 
-export default CompanyHeader;
+export default SideListHeader;
